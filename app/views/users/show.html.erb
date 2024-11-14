@@ -1,0 +1,32 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-4">
+      <h3><%= @user.name %></h3>
+      <% if @user.profile_image.attached? %>
+        <%= image_tag @user.profile_image, class: "img-thumbnail" %>
+      <% else %>
+        <%= image_tag 'default_profile_image.png', class: "img-thumbnail" %>
+      <% end %>
+      <p><%= @user.introduction %></p>
+    </div>
+    <div class="col-md-8">
+      <h4>Books posted by <%= @user.name %></h4>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Body</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @user.books.each do |book| %>
+            <tr>
+              <td><%= link_to book.title, book_path(book) %></td>
+              <td><%= book.body %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

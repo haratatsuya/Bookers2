@@ -1,0 +1,7 @@
+<%# Homeページ、ログインしていないユーザーが表示 %>
+<div class="container text-center mt-5">
+  <h1>Welcome to Bookers</h1>
+  <p>This is a sample application similar to Bookers Level2.</p>
+  <%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-primary' %>
+  <%= link_to 'Log in', new_user_session_path, class: 'btn btn-secondary' %>
+</div>

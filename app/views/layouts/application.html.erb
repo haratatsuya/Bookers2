@@ -1,11 +1,14 @@
 <!DOCTYPE html>
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
 <html>
   <head>
-    <title>Bookers2</title>
+    <title>Bookers</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
- <script src="https://kit.fontawesome.com/fa24e72415.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/fa24e72415.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -20,44 +23,43 @@
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
               <li class="">
-                <%= link_to user_path(current_user), class:"btn btn-link" do %>
-                <span class="glyphicon glyphicon-home" aria-hidden="true"> Home</span>
+                <%= link_to user_path(current_user), class: "btn btn-link" do %>
+                  <span class="glyphicon glyphicon-home" aria-hidden="true"> Home</span>
                 <% end %>
               </li>
               <li class="">
-                <%= link_to users_path, class:"btn btn-link" do %>
-                <span class="glyphicon glyphicon-user" aria-hidden="true"> Users</span>
+                <%= link_to users_path, class: "btn btn-link" do %>
+                  <span class="glyphicon glyphicon-user" aria-hidden="true"> Users</span>
                 <% end %>
               </li>
               <li class="">
-                <%= link_to books_path, class:"btn btn-link" do %>
-                <span class="glyphicon glyphicon-book" aria-hidden="true"> Books</span>
+                <%= link_to books_path, class: "btn btn-link" do %>
+                  <span class="glyphicon glyphicon-book" aria-hidden="true"> Books</span>
                 <% end %>
               </li>
               <li class="">
-                <%= link_to destroy_user_session_path, method: :delete, class:"btn btn-link" do %>
-                <span class="glyphicon glyphicon-log-out" aria-hidden="true"> Logout</span>
+                <%= link_to destroy_user_session_path, method: :delete, class: "btn btn-link" do %>
+                  <span class="glyphicon glyphicon-log-out" aria-hidden="true"> Logout</span>
                 <% end %>
               </li>
             <% else %>
               <li class="">
-                <%= link_to root_path, class:"btn btn-link" do %>
-                <span class="glyphicon glyphicon-home" aria-hidden="true"> Home</span>
+                <%= link_to root_path, class: "btn btn-link" do %>
+                  <span class="glyphicon glyphicon-home" aria-hidden="true"> Home</span>
                 <% end %>
               </li>
               <li class="">
-                <%= link_to home_about_path, class:"btn btn-link" do %>
-                <span class="glyphicon glyphicon-link" aria-hidden="true"> About</span>
+                <%= link_to "About", about_path, class: "btn btn-link" %>
+                  <span class="glyphicon glyphicon-link" aria-hidden="true"> About</span>
+              </li>
+              <li class="">
+                <%= link_to new_user_registration_path, class: "btn btn-link" do %>
+                  <span class="glyphicon glyphicon-edit" aria-hidden="true"> Sign up</span>
                 <% end %>
               </li>
               <li class="">
-                <%= link_to new_user_registration_path, class:"btn btn-link" do %>
-                <span class="glyphicon glyphicon-edit" aria-hidden="true"> sign up</span>
-                <% end %>
-              </li>
-              <li class="">
-                <%= link_to new_user_session_path, class:"btn btn-link" do %>
-                <span class="glyphicon glyphicon-log-in" aria-hidden="true"> login</span>
+                <%= link_to new_user_session_path, class: "btn btn-link" do %>
+                  <span class="glyphicon glyphicon-log-in" aria-hidden="true"> Login</span>
                 <% end %>
               </li>
             <% end %>
@@ -67,14 +69,10 @@
     </header>
     <div class="body">
       <p class="notice"><%= notice %></p>
-
       <%= yield %>
-
-
-        <footer>
-          <p class="text-right"> CopyRight Infratop.inc</p>
-        </footer>
-      </div>
+      <footer>
+        <p class="text-right"> CopyRight Infratop.inc</p>
+      </footer>
     </div>
   </body>
 </html>
